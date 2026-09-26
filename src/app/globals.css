@@ -1,26 +1,94 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #f7f5f0;
+  --surface: #ffffff;
+  --surface-2: #f1eee7;
+  --ink: #1d1b18;
+  --ink-2: #57524a;
+  --ink-3: #8a8378;
+  --line: #e4dfd5;
+  --accent: #1f5f55;
+  --accent-ink: #ffffff;
+  --accent-soft: #e2efec;
+  --met: #1f7a4d;
+  --met-soft: #e3f3ea;
+  --partial: #9a6400;
+  --partial-soft: #fbf0d9;
+  --unmet: #b3261e;
+  --unmet-soft: #fbe6e4;
+  --p1: #4b4fc9;
+  --p2: #a3521f;
+  --p3: #0e7c86;
+  --focus: #2b6cb0;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-met: var(--met);
+  --color-met-soft: var(--met-soft);
+  --color-partial: var(--partial);
+  --color-partial-soft: var(--partial-soft);
+  --color-unmet: var(--unmet);
+  --color-unmet-soft: var(--unmet-soft);
+  --color-p1: var(--p1);
+  --color-p2: var(--p2);
+  --color-p3: var(--p3);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: ui-serif, Georgia, "Times New Roman", serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --paper: #151412;
+    --surface: #1d1c19;
+    --surface-2: #26241f;
+    --ink: #f1ede5;
+    --ink-2: #c3bcb0;
+    --ink-3: #8f887c;
+    --line: #34312b;
+    --accent: #6cc0b0;
+    --accent-ink: #0f1d1a;
+    --accent-soft: #1e3531;
+    --met: #6fcf97;
+    --met-soft: #1b3326;
+    --partial: #e7b75a;
+    --partial-soft: #3a2f16;
+    --unmet: #f08a80;
+    --unmet-soft: #3d1f1c;
+    --p1: #9ea3ff;
+    --p2: #eea06c;
+    --p3: #5fcfd8;
   }
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }
