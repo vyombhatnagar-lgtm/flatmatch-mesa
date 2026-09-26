@@ -1,103 +1,107 @@
-import Image from "next/image";
+import { ButtonLink, Card, Badge } from "@/components/ui";
+
+const steps = [
+  {
+    n: "1",
+    title: "Everyone answers alone",
+    body: "Each flatmate sets a budget, commute, areas and dealbreakers privately, so nobody anchors on anyone else's picture of the ideal flat.",
+  },
+  {
+    n: "2",
+    title: "Rules check every listing",
+    body: "Dealbreakers remove a flat for the whole group. Must-haves, strong preferences and nice-to-haves are weighted, and everyone gets their own score.",
+  },
+  {
+    n: "3",
+    title: "You see the trade-offs",
+    body: "Two or three workable options, each showing what each person gets and what they give up. You make the decision together.",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="space-y-16">
+      <section className="grid items-center gap-10 lg:grid-cols-[1.1fr_1fr]">
+        <div>
+          <Badge tone="accent" className="mb-4">For 3 people sharing a flat</Badge>
+          <h1 className="font-display text-4xl leading-[1.1] text-ink sm:text-5xl">
+            See the trade-off before you fall in love with the apartment.
+          </h1>
+          <p className="mt-5 max-w-xl text-lg text-ink-2">
+            FlatMatch compares listings against all three of you at once. It removes the flats that break someone&apos;s
+            dealbreaker and shows exactly who compromises on what in the rest.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <ButtonLink href="/groups/new">Start a search</ButtonLink>
+            <ButtonLink href="/demo" variant="secondary">
+              See the Riya, Meera &amp; Kavita demo
+            </ButtonLink>
+          </div>
+          <p className="mt-4 text-sm text-ink-3">FlatMatch does not choose your flat. It makes the trade-offs visible so your group can decide.</p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        <Card className="p-5 sm:p-6" aria-label="Example of a FlatMatch trade-off summary">
+          <div className="mb-4 flex items-center justify-between">
+            <div>
+              <p className="text-sm font-semibold">3BHK · Pan Card Club Road, Baner</p>
+              <p className="text-xs text-ink-3">₹48,000/month · floor 3 · lift · car parking</p>
+            </div>
+            <Badge>Example</Badge>
+          </div>
+          <ul className="space-y-3 text-sm">
+            <li className="rounded-lg bg-surface-2 p-3">
+              <p className="font-semibold" style={{ color: "var(--p1)" }}>Riya · 90% fit</p>
+              <p className="text-ink-2">Gets power backup and 3 bedrooms. <span className="text-partial">Gives up: ~29 min commute (estimate) vs her 20 min target.</span></p>
+            </li>
+            <li className="rounded-lg bg-surface-2 p-3">
+              <p className="font-semibold" style={{ color: "var(--p2)" }}>Meera · 93% fit</p>
+              <p className="text-ink-2">Gets a lift, furnished rooms and 24x7 water. <span className="text-partial">Gives up: pays ₹16,000, above her preferred ₹14,000.</span></p>
+            </li>
+            <li className="rounded-lg bg-surface-2 p-3">
+              <p className="font-semibold" style={{ color: "var(--p3)" }}>Kavita · 96% fit</p>
+              <p className="text-ink-2">Gets a pet-friendly flat, car parking and a balcony for Bruno.</p>
+            </li>
+          </ul>
+        </Card>
+      </section>
+
+      <section aria-labelledby="how">
+        <h2 id="how" className="mb-6 font-display text-2xl">How it works</h2>
+        <ol className="grid gap-4 md:grid-cols-3">
+          {steps.map((s) => (
+            <li key={s.n}>
+              <Card className="h-full p-5">
+                <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-accent-soft text-sm font-semibold text-accent">
+                  {s.n}
+                </span>
+                <h3 className="mb-1 font-semibold">{s.title}</h3>
+                <p className="text-sm text-ink-2">{s.body}</p>
+              </Card>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="grid gap-4 md:grid-cols-2">
+        <Card className="p-5">
+          <h2 className="mb-2 font-semibold">What FlatMatch does</h2>
+          <ul className="list-disc space-y-1 pl-5 text-sm text-ink-2">
+            <li>Treats dealbreakers as hard limits for the whole group</li>
+            <li>Weights must-haves, strong preferences and nice-to-haves differently</li>
+            <li>Shows every person&apos;s fit next to the group score</li>
+            <li>Lists the questions your group needs to settle for each option</li>
+          </ul>
+        </Card>
+        <Card className="p-5">
+          <h2 className="mb-2 font-semibold">What it deliberately doesn&apos;t do</h2>
+          <ul className="list-disc space-y-1 pl-5 text-sm text-ink-2">
+            <li>Pick a flat, or label any option &ldquo;best&rdquo;</li>
+            <li>Let AI decide anything. Scoring is fixed rules; AI only writes the explanations</li>
+            <li>Scrape listing sites. This MVP uses clearly labelled mock Pune listings</li>
+            <li>Claim live traffic. Commute times are distance-based estimates</li>
+          </ul>
+        </Card>
+      </section>
     </div>
   );
 }
