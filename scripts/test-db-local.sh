@@ -8,4 +8,4 @@ $P -d postgres -c "drop database if exists $DB" -c "create database $DB"
 $P -d $DB -f supabase/tests/local_shim.sql
 for f in supabase/migrations/*.sql; do echo "applying $f"; $P -d $DB -f "$f"; done
 $P -d $DB -f supabase/seed.sql
-$P -d $DB -f supabase/tests/rls_test.sql | grep -E "PASSED" 
+$P -d $DB -f supabase/tests/rls_test.sql | grep -E "PASSED"

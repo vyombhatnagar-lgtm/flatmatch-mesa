@@ -3,7 +3,7 @@
 -- Every check raises an exception on failure; success prints "ALL RLS CHECKS PASSED".
 -- Everything runs in one transaction that is rolled back, so it is safe to run
 -- against a real project too (it leaves no data behind).
-\set ON_ERROR_STOP 1
+-- psql: run with -v ON_ERROR_STOP=1. Supabase SQL editor: paste and run as-is.
 begin;
 
 -- Test users (as a privileged role)
@@ -152,5 +152,8 @@ exception when insufficient_privilege then null;
 end $$;
 
 reset role;
-select 'ALL RLS CHECKS PASSED' as result;
 rollback;
+select 'ALL RLS CHECKS PASSED' as result,
+  (select count(*) from public.property_listings) as listings,
+  (select count(*) from pg_tables where schemaname = 'public' and rowsecurity) as rls_tables,
+  (select count(*) from auth.users where email like '%.test@example.com') as leftover_test_users;
