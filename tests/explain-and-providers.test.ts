@@ -50,6 +50,20 @@ describe("9. Gemini unavailable", () => {
     spy.mockRestore();
   });
 
+  it("retries once on a transient 503, then succeeds", async () => {
+    let calls = 0;
+    const res = await explainListing(ev, {
+      apiKey: "x",
+      generate: async () => {
+        calls++;
+        if (calls === 1) throw new Error('{"error":{"code":503,"status":"UNAVAILABLE"}}');
+        return validJson;
+      },
+    });
+    expect(calls).toBe(2);
+    expect(res.source).toBe("gemini");
+  });
+
   it("falls back when Gemini times out", async () => {
     const spy = vi.spyOn(console, "error").mockImplementation(() => {});
     const res = await explainListing(ev, { apiKey: "x", timeoutMs: 20, generate: () => new Promise((r) => setTimeout(() => r(validJson), 200)) });

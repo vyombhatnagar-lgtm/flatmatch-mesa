@@ -139,7 +139,19 @@ export async function explainListing(
 
   try {
     const generate = opts.generate ?? defaultGenerate(apiKey!, model);
-    const text = await withTimeout(generate(buildGeminiPrompt(ev)), opts.timeoutMs ?? TIMEOUT_MS);
+    const prompt = buildGeminiPrompt(ev);
+    let text = "";
+    // Retry once on transient overload/rate-limit errors (503/429).
+    for (let attempt = 0; ; attempt++) {
+      try {
+        text = await withTimeout(generate(prompt), opts.timeoutMs ?? TIMEOUT_MS);
+        break;
+      } catch (e) {
+        const msg = e instanceof Error ? e.message : String(e);
+        if (attempt >= 1 || !/\b(503|429|UNAVAILABLE|RESOURCE_EXHAUSTED)\b/.test(msg)) throw e;
+        await new Promise((r) => setTimeout(r, 1500));
+      }
+    }
     const parsed = ExplanationSchema.safeParse(JSON.parse(text));
     if (!parsed.success) return fallback("Gemini returned an unexpected format.");
     if (DECISION_LANGUAGE.test(JSON.stringify(parsed.data))) {
