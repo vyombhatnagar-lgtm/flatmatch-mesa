@@ -4,7 +4,7 @@ import type { ListingEvaluation } from "@/lib/matching/types";
 import { buildFallbackExplanation } from "./fallback";
 import { ExplanationSchema, type ExplanationResult } from "./types";
 
-export const DEFAULT_GEMINI_MODEL = "gemini-2.5-flash";
+export const DEFAULT_GEMINI_MODEL = "gemini-3.8-flash";
 const TIMEOUT_MS = 20_000;
 
 /** Words that would imply FlatMatch is picking a flat. Output containing them is rejected. */

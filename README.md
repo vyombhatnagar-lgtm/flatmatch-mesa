@@ -134,7 +134,7 @@ The `/demo` route works with **no environment variables at all**. Without Supaba
 | `NEXT_PUBLIC_SUPABASE_URL` | client + server | yes (for accounts) | Project URL |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | client + server | yes (for accounts) | Anon/publishable key. Public by design; RLS protects data |
 | `GEMINI_API_KEY` | **server only** | no | Without it, explanations are rule-based and labelled so |
-| `GEMINI_MODEL` | server only | no | Defaults to `gemini-2.5-flash` |
+| `GEMINI_MODEL` | server only | no | Defaults to `gemini-3.8-flash` |
 | `PROPERTY_PROVIDER` | server only | no | `mock` (default) or `authorized_api` |
 | `PROPERTY_API_URL`, `PROPERTY_API_KEY` | server only | no | For a future licensed listings partner |
 
